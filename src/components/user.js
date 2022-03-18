@@ -3,12 +3,15 @@ import EditIcon from '@mui/icons-material/Edit';
 import dateFormat from "dateformat";
 
 
-export const User = ({ user, handleEditClick }) => {
+export const User = ({ user, handleEditClick, isSelected, handleSelectUser }) => {
 
     return (
         <TableRow>
             <TableCell>
-                <Checkbox />
+                <Checkbox
+                    checked={isSelected(user?._id)}
+                    onChange={event => handleSelectUser(event, user?._id)}
+                />
             </TableCell>
             <TableCell align="center">{user?.firstName}</TableCell>
             <TableCell align="center">{user?.lastName}</TableCell>
@@ -17,7 +20,7 @@ export const User = ({ user, handleEditClick }) => {
             <TableCell align="center">{user?.placeOfBirth}</TableCell>
             <TableCell align="center">{user?.maritalStatus}</TableCell>
             <TableCell>
-                <Button onClick={(event)=>handleEditClick(event, user?._id)}>
+                <Button onClick={(event) => handleEditClick(event, user?._id)}>
                     <EditIcon />
                 </Button>
             </TableCell>

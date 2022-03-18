@@ -10,16 +10,19 @@ const TABLE_HEADERS_NAMES = {
 }
 
 
-export const MyTableHead = () => {
+export const MyTableHead = ({ handleSelectAllUsers, numSelectedRow, numRow }) => {
     return (
         <TableHead>
             <TableRow>
                 <TableCell>
-                    <Checkbox />
+                    <Checkbox
+                        onChange={handleSelectAllUsers}
+                        checked={numRow === numSelectedRow ? true : false}
+                    />
                 </TableCell>
                 {
                     Object.keys(TABLE_HEADERS_NAMES).map(key => (
-                        <TableCell align="center" key={key}>
+                        <TableCell width='18%' align="center" key={key}>
                             {TABLE_HEADERS_NAMES[key]}
                         </TableCell>
                     ))
